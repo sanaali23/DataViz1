@@ -4,59 +4,77 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title> Article Collection on Somali Refugees</title>
-		<link rel="stylesheet" href="Styles.CSS" >
+		<!-- This is for style.CSS page that has been created -->
+		<link rel="stylesheet" href="Styles.CSS" />
+
 		<!--Script example from https://developers.google.com/chart/interactive/docs/quick_start -->
-		<!--Load the AJAX API from https://developers.google.com/chart/interactive/docs/quick_start-->
+		<!-- This is from google visualizations API;Load the AJAX API from the source: https://developers.google.com/chart/interactive/docs/quick_start-->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script type="text/javascript">
-			/* Load the Visualization API and the corechart package.*/
+			/* Load the Visualization API and the corechart package. This is the basic recipe book I am using from Google Library and executing recipe called load on this chart*/
 			google.charts.load('current', {
-				'packages' : ['corechart']
-			});
+				'packages' : ['corechart']});
 
-			/* When google calls back with contents of the "corechart" package ,
-			 * execute draw chart function
+			/* When google calls back with contents of the "corechart" package,
+			 * execute draw chart function on my web page
+			 * This is telling page to make chart once page is loaded
 			 */
 			google.charts.setOnLoadCallback(drawChart);
 
 			/* This is the drawchart funtion
 			 * It doesn't need any extra ingredients
-			 * it draws a chart on the page.
+			 * it draws a chart on the page. This is I assume when the chart appears on my page? 
+			 * This is a defined function. 
 			 */
 			function drawChart() {
 
-				/*call on the data table recipe to make a new data table type */
-				var datacontainer = new google.visualization.DataTable();
-				/*Add a column of type, number, labelled "slices" */
-				datacontainer.addColumn('string', 'Topping');
-				datacontainer.addColumn('number', 'Slices');
-				/*My rows must be a list of lists,with each item in the list having the same number as I have columns
+				/*call on the data table recipe to make a new data table type that will be where I visualize my data */
+				var datacontainerofmysource = new google.visualization.DataTable();
+				
+				/*I am adding columns that will be the features of my pie chart: string, neighoring country, number, the population number; I am starting to customize it
+				 * The source of my data is:http://data.unhcr.org/horn-of-africa/regional.php  */
+				datacontainerofmysource.addColumn('string', 'Neighboring Country');
+				datacontainerofmysource.addColumn('number', 'Population Number');
+				/* My rows are of the different countries in the neighboring countries they went to and the numbers of them. My rows must be a list of lists,with each item in the list having the same number as I have columns
 				 * and with the data types matching thoe that were declared
 				 * in my "addColumn" function calls */
 
-				datacontainer.addRows([['Mushrooms', 3], ['Onions', 1], ['Olives', 1], ['Zucchini', 1], ['Pepperoni', 2]]);
+				datacontainerofmysource.addRows([['Kenya', 324735], 
+				['Yemen', 255399], 
+				['Ethiopia', 241624], 
+				['Uganda', 41014], 
+				['Djibouti', 13077],
+				['Egypt',6835],
+				['Eritrea',2244],
+				['Tanzania',155]
+				]);
 
-				/* An object with different values for options includes some customization such as title, width and height.
-				 we will need to add to this extensively*/
+				/* Here I am customizing my bar chart to be relevant for me. I have made it bigger so as to allow the values to be more clear and added background color */
 				var customizationoptions = {
-					'title' : 'How Much Pizza I Ate Last Night',
-					'width' : 400,
-					'height' : 300
+					'title' : 'Somali Refugees In Neighboring Countries',
+					'width' : 600,
+					'height' : 400,
+					'backgroundColor':'#eeeeee'
 				};
 
 				/* Creating a variable
-				 * in which I am storing the result of calling the  "pie chart" function
+				 * in which I am storing the result of calling the  "bar chart" function
 				 * I must pass that function the id of a div that exists on the page
 				 */
-				var chart = new google.visualization.PieChart(document.getElementById('chart_holder'));
-				chart.draw(datacontainer, customizationoptions);
+				
+				var chart = new google.visualization.BarChart(document.getElementById('thisisachartaboutsomalirefugees_div'));
+				/*Tell the chart object to draw using the datacontainerofmysource above and the options customizationoptions above which has the features for customization */
+				chart.draw(datacontainerofmysource, customizationoptions);
+		/*this is where the drawing of the chart as a function ends */
 			}
 		</script>
 
 	</head>
 	<body>
-		<!-- this is the div where I want my google Viz Chart to appear -->
-		<div id="chart_holder"> </div>
+		<!--this needs a div as one of its ingredient, so this is the div where I want my google Viz Chart to appear -->
+		<div id="thisisachartaboutsomalirefugees_div"> </div>
+		
+		
 		<h1> Four Stories About Somali Refugees</h1>
 
 		<!-- This is going to be the first article below. The first div class is called "Insideit" which is the broad class name for each article so including the title,image, link and summary.-->
@@ -120,7 +138,7 @@
 			<br>
 			<br>
 		</div>
-		<script type="text/javascript" src="Scripts.JS"></script>
+		<script src="Scripts.JS" type="text/javascript"></script>
 
 	</body>
 </html>
