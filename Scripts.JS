@@ -75,17 +75,20 @@
 				/*Goal: to go through all the objects in the list above and be able to send a message to the console on Chrome everytime I find one that was published on USAToday */
 				for (var counter = 0; counter < listofArticles.length; counter++) {
 					console.log(listofArticles[counter]);
-					/*now I am making an if systems to test if an article has "USAToday" as the source property. If it does, print the object and if not print "ThisisnotUSAToday" */
-
+/*now I am making an if systems to test if an article has "USAToday" as the source property. If it does, print the object and if not print "ThisisnotUSAToday" */
+				/*Below is the recent articles counter that I will then sort */
 					var recentarticles = listofArticles[counter];
-					if (recentarticles.source == "USAToday") {
+					/* The first part of the code is 'if' the source is USA Today */
+					if (recentarticles.source == "USAToday") /*I have logged it */{
 						console.log(recentarticles);
-					} else {
+					} /*And now I check if there is not USA today */
+					else {
 						console.log("ThisisnotUSAToday");
 					}
 
 				}
 
+				/* I have then console logged it */
 				console.log("loops are complete!");
 			}
 
