@@ -1,15 +1,20 @@
-
 /*This is a CSS entered below*/
-			.Whatitscalled {
-				font-size: 24px;
-				color:#OOOOOO;
-				font-family: Arial;
-				font-style: italic;
-			}
-			img {
-				max-width: 100%;
-				width: 600px;
-			}
-			.Insideit {
-				width: 600px;
-			}
+.Whatitscalled {
+	font-size: 24px;
+	color: #OOOOOO;
+	font-family: Arial;
+	font-style: italic;
+}
+img {
+	max-width: 100%;
+	width: 600px;
+}
+.Insideit {
+	width: 600px;
+}
+/* Now I am adding CSS for the div so that the visualization I have added on the top doesnt jump */
+#thisisachartaboutsomalirefugees_div{
+	width: 600px;
+	height:400px;
+	background-color: #eeeeee;
+}
