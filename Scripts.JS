@@ -70,14 +70,17 @@
 
 				"summary" : "As refugees from Somalia arrived in Dadaab, many of them were to frail and hungry to survive. In other situations many did not even survive the journey to these camps. This was in the face of the droughts that hit East Africa in 2011. There were estimates that a quarter of the Somali population is uprooted. This article highlights the impact this was having on children who were fleeing Somalia as refugees."
 			}];
-			function IDNYTimes(listofArticles) {
+			/*creating a function called checkUSAToday with the internal label of Ifthatisthepublicationname of the list being worked on
+			 * this is how I have chosen to define it */
+			function checkUSAToday(Ifthatisthepublicationname) {
 
 				/*Goal: to go through all the objects in the list above and be able to send a message to the console on Chrome everytime I find one that was published on USAToday */
-				for (var counter = 0; counter < listofArticles.length; counter++) {
-					console.log(listofArticles[counter]);
+				
+				for (var counter = 0; counter < Ifthatisthepublicationname.length; counter++) {
+					console.log(Ifthatisthepublicationname[counter]);
 /*now I am making an if systems to test if an article has "USAToday" as the source property. If it does, print the object and if not print "ThisisnotUSAToday" */
 				/*Below is the recent articles counter that I will then sort */
-					var recentarticles = listofArticles[counter];
+					var recentarticles = Ifthatisthepublicationname[counter];
 					/* The first part of the code is 'if' the source is USA Today */
 					if (recentarticles.source == "USAToday") /*I have logged it */{
 						console.log(recentarticles);
@@ -92,11 +95,12 @@
 				console.log("loops are complete!");
 			}
 
-			/* Call my newly created function */
-			/*calling it with my firs list */
+			/* Call my newly created function which is drawing a chart from my first list */
+			/*this is me explicitly calling the first function which is the USAToday Function*/
 			console.log("Calling with first list");
-			IDNYTimes(Thesourcesofmycontentandtheirvariousfeatures);
-			/*calling it with my second list */
+			/* calling on the defined function called CheckUSAToday, now I am executing it */
+			checkUSAToday(Thesourcesofmycontentandtheirvariousfeatures);
+			/*calling it with my second list if there was one */
 
 
 
