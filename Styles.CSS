@@ -7,14 +7,19 @@
 }
 img {
 	max-width: 100%;
-	width: 600px;
+	width: 400px;
 }
 .Insideit {
-	width: 600px;
+	width: 400px;
 }
 /* Now I am adding CSS for the div so that the visualization I have added on the top doesnt jump */
 #thisisachartaboutsomalirefugees_div{
-	width: 600px;
-	height:400px;
+	width: 400px;
+	height:300px;
+	background-color: #eeeeee;
+}
+#thisisachartaboutsomalirefugees2_div{
+	width: 400px;
+	height:300px;
 	background-color: #eeeeee;
 }

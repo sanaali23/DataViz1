@@ -2,6 +2,11 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title> Article Collection on Somali Refugees</title>
 		<!-- This is for style.CSS page that has been created -->
@@ -13,24 +18,30 @@
 		<script type="text/javascript">
 			/* Load the Visualization API and the corechart package. This is the basic recipe book I am using from Google Library and executing recipe called load on this chart*/
 			google.charts.load('current', {
-				'packages' : ['corechart']});
+				'packages' : ['corechart']
+			});
 
 			/* When google calls back with contents of the "corechart" package,
 			 * execute draw chart function on my web page
 			 * This is telling page to make chart once page is loaded
 			 */
-			google.charts.setOnLoadCallback(drawChart);
+			google.charts.setOnLoadCallback(drawAllCharts);
+			function drawAllCharts() {
+				/*Now I am calling on both the functions so that both charts appear */
+				drawChart1();
+				drawChart2();
+			}
 
 			/* This is the drawchart funtion
 			 * It doesn't need any extra ingredients
-			 * it draws a chart on the page. This is I assume when the chart appears on my page? 
-			 * This is a defined function. 
+			 * it draws a chart on the page. This is I assume when the chart appears on my page?
+			 * This is a defined function.
 			 */
-			function drawChart() {
+			function drawChart1() {
 
 				/*call on the data table recipe to make a new data table type that will be where I visualize my data */
 				var datacontainerofmysource = new google.visualization.DataTable();
-				
+
 				/*I am adding columns that will be the features of my pie chart: string, neighoring country, number, the population number; I am starting to customize it
 				 * The source of my data is:http://data.unhcr.org/horn-of-africa/regional.php  */
 				datacontainerofmysource.addColumn('string', 'Neighboring Country');
@@ -39,107 +50,141 @@
 				 * and with the data types matching thoe that were declared
 				 * in my "addColumn" function calls */
 
-				datacontainerofmysource.addRows([['Kenya', 324735], 
-				['Yemen', 255399], 
-				['Ethiopia', 241624], 
-				['Uganda', 41014], 
-				['Djibouti', 13077],
-				['Egypt',6835],
-				['Eritrea',2244],
-				['Tanzania',155]
-				]);
+				datacontainerofmysource.addRows([['Kenya', 324735], ['Yemen', 255399], ['Ethiopia', 241624], ['Uganda', 41014], ['Djibouti', 13077], ['Egypt', 6835], ['Eritrea', 2244], ['Tanzania', 155]]);
 
 				/* Here I am customizing my bar chart to be relevant for me. I have made it bigger so as to allow the values to be more clear and added background color */
 				var customizationoptions = {
 					'title' : 'Somali Refugees In Neighboring Countries',
-					'width' : 600,
-					'height' : 400,
-					'backgroundColor':'#eeeeee'
+					'width' : 400,
+					'height' : 300,
+					'backgroundColor' : '#eeeeee'
 				};
 
 				/* Creating a variable
 				 * in which I am storing the result of calling the  "bar chart" function
 				 * I must pass that function the id of a div that exists on the page
 				 */
-				
+
 				var chart = new google.visualization.BarChart(document.getElementById('thisisachartaboutsomalirefugees_div'));
 				/*Tell the chart object to draw using the datacontainerofmysource above and the options customizationoptions above which has the features for customization */
 				chart.draw(datacontainerofmysource, customizationoptions);
-		/*this is where the drawing of the chart as a function ends */
+				/*this is where the drawing of the chart as a function ends */
+			}
+
+			function drawChart2() {
+
+				/*call on the data table recipe to make a new data table type that will be where I visualize my data */
+				var datacontainerofmysource2 = new google.visualization.DataTable();
+
+				/*I am adding columns that will be the features of my pie chart: string, neighoring country, number, the population number; I am starting to customize it
+				 * The source of my data is:http://reliefweb.int/sites/reliefweb.int/files/resources/July_2016_Total_IDPs_by_Region%281%29.pdf  */
+				datacontainerofmysource2.addColumn('string', 'Region');
+				datacontainerofmysource2.addColumn('number', 'Number of Refugees');
+				/* My rows are of the regions in Somalia with the largest number of IDP Somali's. My rows must be a list of lists,with each item in the list having the same number as I have columns
+				 * and with the data types matching thoe that were declared
+				 * in my "addColumn" function calls */
+
+				datacontainerofmysource2.addRows([['Galguduud', 120000], ['Shabelle Hoose', 103000], ['Mogadishu', 369000], ['Gedo', 77000], ['Mudug', 71000], ['Shabelle Dhexe', 51000], ['Hiiraan', 51000]]);
+
+				/* Here I am customizing my pie chart to be relevant for me. I have made it bigger so as to allow the values to be more clear and added background color */
+				var customizationoptions2 = {
+					'title' : 'Somalia Internally Displaced Persons by Region',
+					'width' : 400,
+					'height' : 300,
+					'backgroundColor' : '#eeeeee'
+				};
+
+				/* Creating a variable
+				 * in which I am storing the result of calling the  "pie chart" function
+				 * I must pass that function the id of a div that exists on the page
+				 */
+				/* */
+				var chart = new google.visualization.PieChart(document.getElementById('thisisachartaboutsomalirefugees2_div'));
+				/*Tell the chart object to draw using the datacontainerofmysource2 above and the options customizationoptions above which has the features for customization */
+				chart.draw(datacontainerofmysource2, customizationoptions2);
+				/*this is where the drawing of the chart as a function ends */
 			}
 		</script>
 
 	</head>
 	<body>
-		<!--this needs a div as one of its ingredient, so this is the div where I want my google Viz Chart to appear -->
-		<div id="thisisachartaboutsomalirefugees_div"> </div>
-		
-		
-		<h1> Four Stories About Somali Refugees</h1>
 
-		<!-- This is going to be the first article below. The first div class is called "Insideit" which is the broad class name for each article so including the title,image, link and summary.-->
+		<div class= "container-fluid">
+			<!--this needs a div as one of its ingredient, so this is the div where I want my google Viz Chart to appear -->
+			<div class="row">
+				<div class= "col-md-6">
+					<div id="thisisachartaboutsomalirefugees_div"  class="chart_holder_styles"></div>
+				</div>
+				<div class= "col-md-6" >
+					<div id="thisisachartaboutsomalirefugees2_div"  class="chart_holder_styles"></div>
+				</div>
+			</div>
 
-		<div class="Insideit">
-			<!--this is a simple style,I have used italics for the title to test it.-->
+			<h1> Four Stories About Somali Refugees</h1>
 
-			<div class="Whatitscalled">
-				<a href="http://www.usatoday.com/story/news/world/2017/01/31/somali-refugees-stranded-trump-travel-ban/97294230/">15,000 Somalis 'heartbroken' by Trump refugee ban</a>
-			</div>
-			<!-- This is the title which I got from: http://www.usatoday.com/story/news/world/2017/01/31/somali-refugees-stranded-trump-travel-ban/97294230/ -->
-			<div style><img src="http://www.gannett-cdn.com/-mm-/118046dd4b6a80ce0e31799574fb1405d6d8f2c9/c=134-0-4813-3518&r=x404&c=534x401/local/-/media/2017/01/31/USATODAY/USATODAY/636214719786583443-AFP-AFP-I52L5.jpg"/>
-			</div>
-			<!-- Here is the first image. I have used the image source to add this-->
-			<div>
-				The policy by President Trump to suspend the US asylum program is affecting Somali refugees in the Dadaab camp in Kenya. According to the UN, 26000 refugees in Kenya were in the process of resettlement of which 14,500 were from Dadaab. This included a 25 year old, Ahmed Ismail Shafat who was born in Dadaab and went through a ten-year vetting process for the US. As the future of the Dadaab, the world’s largest refugee camp is uncertain, this is a worry for Somali refugees trying to get to the US.
-			</div>
-			<br>
-			<br>
-			<!-- this was the summary of my first link -->
-		</div>
+			<!-- This is going to be the first article below. The first div class is called "Insideit" which is the broad class name for each article so including the title,image, link and summary.-->
 
-		<div class="Insideit">
+			<div class="Insideit">
+				<!--this is a simple style,I have used italics for the title to test it.-->
 
-			<div class="Whatitscalled">
-				<a href="https://www.nytimes.com/2015/10/10/opinion/the-other-refugee-crisis.html?_r=0">The Other Refugee Crisis</a>
+				<div class="Whatitscalled">
+					<a href="http://www.usatoday.com/story/news/world/2017/01/31/somali-refugees-stranded-trump-travel-ban/97294230/">15,000 Somalis 'heartbroken' by Trump refugee ban</a>
+				</div>
+				<!-- This is the title which I got from: http://www.usatoday.com/story/news/world/2017/01/31/somali-refugees-stranded-trump-travel-ban/97294230/ -->
+				<div style><img src="http://www.gannett-cdn.com/-mm-/118046dd4b6a80ce0e31799574fb1405d6d8f2c9/c=134-0-4813-3518&r=x404&c=534x401/local/-/media/2017/01/31/USATODAY/USATODAY/636214719786583443-AFP-AFP-I52L5.jpg"/>
+				</div>
+				<!-- Here is the first image. I have used the image source to add this-->
+				<div>
+					The policy by President Trump to suspend the US asylum program is affecting Somali refugees in the Dadaab camp in Kenya. According to the UN, 26000 refugees in Kenya were in the process of resettlement of which 14,500 were from Dadaab. This included a 25 year old, Ahmed Ismail Shafat who was born in Dadaab and went through a ten-year vetting process for the US. As the future of the Dadaab, the world’s largest refugee camp is uncertain, this is a worry for Somali refugees trying to get to the US.
+				</div>
+				<br>
+				<br>
+				<!-- this was the summary of my first link -->
 			</div>
-			<div style><img src="https://static01.nyt.com/images/2015/10/10/opinion/10rawlence/10rawlence-master1050.jpg"/>
-			</div>
-			<div>
-				The Dadaab refugee camp was established in 1991 as a temporary camp for Somali refugees who were escaping its civil wa. Since then it has become the largest refugee camp. It is home to half a million occupants, of which 400,000 are of Somali refugees. The life in Dadaab is challenging for refugees who face a host of challenges. It is one of the many “temporary but permanent cities”. This article discusses the plight of life in Dadaab and how refugees live.
-			</div>
-			<br>
-			<br>
-		</div>
 
-		<div class="Insideit">
+			<div class="Insideit">
 
-			<div class="Whatitscalled">
-				<a href="http://www.doctorswithoutborders.org/article/kenya-somali-refugees-must-not-be-forcibly-returned-dadaab"> Kenya:Somali Refugees Must Not Be Forcibly Returned from Dadaab</a>
+				<div class="Whatitscalled">
+					<a href="https://www.nytimes.com/2015/10/10/opinion/the-other-refugee-crisis.html?_r=0">The Other Refugee Crisis</a>
+				</div>
+				<div style><img src="https://static01.nyt.com/images/2015/10/10/opinion/10rawlence/10rawlence-master1050.jpg"/>
+				</div>
+				<div>
+					The Dadaab refugee camp was established in 1991 as a temporary camp for Somali refugees who were escaping its civil wa. Since then it has become the largest refugee camp. It is home to half a million occupants, of which 400,000 are of Somali refugees. The life in Dadaab is challenging for refugees who face a host of challenges. It is one of the many “temporary but permanent cities”. This article discusses the plight of life in Dadaab and how refugees live.
+				</div>
+				<br>
+				<br>
 			</div>
-			<div style><img src="http://cdn.doctorswithoutborders.org/sites/usa/files/styles/detail_page_header_left_sidebar/https/media.msf.org/Docs/MSF/Media/TR1/7/d/b/8/MSF144039.jpg"/>
-			</div>
-			<div>
-				According to Doctors Without Borders, in 2015, Kenyan officials were pushing for the forceful return of Somali refugees in the Dadaab camp in Kenya. MSF believes that despite the poor conditions at Dadaad, it is still better than the life that these refugees would have in Somalia. They stated the need for the Kenyan government and international community to provide stronger protections for these refugees.
-			</div>
-			<br>
-			<br>
-		</div>
 
-		<div class="Insideit">
+			<div class="Insideit">
 
-			<div class="Whatitscalled">
-				<a href="https://www.yahoo.com/amphtml/news/un-somali-refugee-crisis-killing-children-111216377.html">UN:Somalia Refugee Crisis is Killing Children</a>
+				<div class="Whatitscalled">
+					<a href="http://www.doctorswithoutborders.org/article/kenya-somali-refugees-must-not-be-forcibly-returned-dadaab"> Kenya:Somali Refugees Must Not Be Forcibly Returned from Dadaab</a>
+				</div>
+				<div style><img src="http://cdn.doctorswithoutborders.org/sites/usa/files/styles/detail_page_header_left_sidebar/https/media.msf.org/Docs/MSF/Media/TR1/7/d/b/8/MSF144039.jpg"/>
+				</div>
+				<div>
+					According to Doctors Without Borders, in 2015, Kenyan officials were pushing for the forceful return of Somali refugees in the Dadaab camp in Kenya. MSF believes that despite the poor conditions at Dadaad, it is still better than the life that these refugees would have in Somalia. They stated the need for the Kenyan government and international community to provide stronger protections for these refugees.
+				</div>
+				<br>
+				<br>
 			</div>
-			<div style><img src="https://s.yimg.com/uu/api/res/1.2/Y5s3bJG44oiaVGhReTTQvQ--/aD0yMTg0O3c9MzMwMDtzbT0xO2FwcGlkPXl0YWNoeW9u/http://media.zenfs.com/en_us/News/ap_webfeeds/567bf0f5fa40140ef20e6a706700831a.jpg"/>
-			</div>
-			<div>
-				As refugees from Somalia arrived in Dadaab, many of them were to frail and hungry to survive. In other situations many did not even survive the journey to these camps. This was in the face of the droughts that hit East Africa in 2011. There were estimates that a quarter of the Somali population is uprooted. This article highlights the impact this was having on children who were fleeing Somalia as refugees.
-			</div>
-			<br>
-			<br>
-		</div>
-		<script src="Scripts.JS" type="text/javascript"></script>
 
+			<div class="Insideit">
+
+				<div class="Whatitscalled">
+					<a href="https://www.yahoo.com/amphtml/news/un-somali-refugee-crisis-killing-children-111216377.html">UN:Somalia Refugee Crisis is Killing Children</a>
+				</div>
+				<div style><img src="https://s.yimg.com/uu/api/res/1.2/Y5s3bJG44oiaVGhReTTQvQ--/aD0yMTg0O3c9MzMwMDtzbT0xO2FwcGlkPXl0YWNoeW9u/http://media.zenfs.com/en_us/News/ap_webfeeds/567bf0f5fa40140ef20e6a706700831a.jpg"/>
+				</div>
+				<div>
+					As refugees from Somalia arrived in Dadaab, many of them were to frail and hungry to survive. In other situations many did not even survive the journey to these camps. This was in the face of the droughts that hit East Africa in 2011. There were estimates that a quarter of the Somali population is uprooted. This article highlights the impact this was having on children who were fleeing Somalia as refugees.
+				</div>
+				<br>
+				<br>
+			</div>
+			</div>
+			<script src="Scripts.JS" type="text/javascript"></script>
 	</body>
 </html>
 
