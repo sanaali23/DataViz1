@@ -2,7 +2,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<!-- Latest compiled and minified CSS -->
+		<!-- Latest compiled and minified CSS.This is the bootstrap code I am using to make the visualizations visible and in line on the webpage -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous">
@@ -25,11 +25,12 @@
 			 * execute draw chart function on my web page
 			 * This is telling page to make chart once page is loaded
 			 */
-			google.charts.setOnLoadCallback(drawAllCharts);
-			function drawAllCharts() {
-				/*Now I am calling on both the functions so that both charts appear */
-				drawChart1();
-				drawChart2();
+			/*So now I am using a drawbothchartsaboutSomalia function so that I can make sure both my charts are visible not just one */
+			google.charts.setOnLoadCallback(drawbothchartsaboutSomalia);
+			function drawbothchartsaboutSomalia() {
+				/*Now I am calling on both the functions so that both charts appear the first one about Somali refugees aborad and the other about IDP's in the country*/
+				Barchartaboutrefugeesabroad();
+				PiechartaboutIDPs();
 			}
 
 			/* This is the drawchart funtion
@@ -37,7 +38,7 @@
 			 * it draws a chart on the page. This is I assume when the chart appears on my page?
 			 * This is a defined function.
 			 */
-			function drawChart1() {
+			function Barchartaboutrefugeesabroad() {
 
 				/*call on the data table recipe to make a new data table type that will be where I visualize my data */
 				var datacontainerofmysource = new google.visualization.DataTable();
@@ -65,26 +66,27 @@
 				 * I must pass that function the id of a div that exists on the page
 				 */
 
-				var chart = new google.visualization.BarChart(document.getElementById('thisisachartaboutsomalirefugees_div'));
+				var barchartSomaliRefugees = new google.visualization.BarChart(document.getElementById('thisisachartaboutsomalirefugees_div'));
 				/*Tell the chart object to draw using the datacontainerofmysource above and the options customizationoptions above which has the features for customization */
-				chart.draw(datacontainerofmysource, customizationoptions);
+				barchartSomaliRefugees.draw(datacontainerofmysource, customizationoptions);
 				/*this is where the drawing of the chart as a function ends */
 			}
 
-			function drawChart2() {
+/*Now I am starting a second function so that I can draw my second visualization, a pie chart */
+			function PiechartaboutIDPs() {
 
-				/*call on the data table recipe to make a new data table type that will be where I visualize my data */
-				var datacontainerofmysource2 = new google.visualization.DataTable();
+				/*call on the data table recipe to make a new data table type that will be where I visualize my data about IDPs within Somalia*/
+				var wheremyotherdatais = new google.visualization.DataTable();
 
 				/*I am adding columns that will be the features of my pie chart: string, neighoring country, number, the population number; I am starting to customize it
 				 * The source of my data is:http://reliefweb.int/sites/reliefweb.int/files/resources/July_2016_Total_IDPs_by_Region%281%29.pdf  */
-				datacontainerofmysource2.addColumn('string', 'Region');
-				datacontainerofmysource2.addColumn('number', 'Number of Refugees');
+				wheremyotherdatais.addColumn('string', 'Region');
+				wheremyotherdatais.addColumn('number', 'Number of Refugees');
 				/* My rows are of the regions in Somalia with the largest number of IDP Somali's. My rows must be a list of lists,with each item in the list having the same number as I have columns
 				 * and with the data types matching thoe that were declared
 				 * in my "addColumn" function calls */
 
-				datacontainerofmysource2.addRows([['Galguduud', 120000], ['Shabelle Hoose', 103000], ['Mogadishu', 369000], ['Gedo', 77000], ['Mudug', 71000], ['Shabelle Dhexe', 51000], ['Hiiraan', 51000]]);
+				wheremyotherdatais.addRows([['Galguduud', 120000], ['Shabelle Hoose', 103000], ['Mogadishu', 369000], ['Gedo', 77000], ['Mudug', 71000], ['Shabelle Dhexe', 51000], ['Hiiraan', 51000]]);
 
 				/* Here I am customizing my pie chart to be relevant for me. I have made it bigger so as to allow the values to be more clear and added background color */
 				var customizationoptions2 = {
@@ -99,24 +101,26 @@
 				 * I must pass that function the id of a div that exists on the page
 				 */
 				/* */
-				var chart = new google.visualization.PieChart(document.getElementById('thisisachartaboutsomalirefugees2_div'));
+				var PiechartaboutIDPs= new google.visualization.PieChart(document.getElementById('thisisachartaboutsomaliIDPs_div'));
 				/*Tell the chart object to draw using the datacontainerofmysource2 above and the options customizationoptions above which has the features for customization */
-				chart.draw(datacontainerofmysource2, customizationoptions2);
+				PiechartaboutIDPs.draw(wheremyotherdatais, customizationoptions2);
 				/*this is where the drawing of the chart as a function ends */
 			}
 		</script>
 
 	</head>
 	<body>
-
+ <!-- This is the div class called container fluid from Bootstrap so that I can apply divs to both my visualizations -->
 		<div class= "container-fluid">
 			<!--this needs a div as one of its ingredient, so this is the div where I want my google Viz Chart to appear -->
 			<div class="row">
+				<!-- this is the first div class for the somali refugees -->
 				<div class= "col-md-6">
 					<div id="thisisachartaboutsomalirefugees_div"  class="chart_holder_styles"></div>
 				</div>
+				<!-- this is my second div class for somali IDPs -->
 				<div class= "col-md-6" >
-					<div id="thisisachartaboutsomalirefugees2_div"  class="chart_holder_styles"></div>
+					<div id="thisisachartaboutsomaliIDPs_div"  class="chart_holder_styles"></div>
 				</div>
 			</div>
 
@@ -183,8 +187,8 @@
 				<br>
 				<br>
 			</div>
-			</div>
-			<script src="Scripts.JS" type="text/javascript"></script>
+		</div>
+		<script src="Scripts.JS" type="text/javascript"></script>
 	</body>
 </html>
 
